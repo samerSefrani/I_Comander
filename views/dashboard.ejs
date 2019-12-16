@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style/main.css" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#90a8b2">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="images/touch/icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/icon-192x192.png">
+
+    <!-- Tile for Win8 -->
+    <meta name="msapplication-TileColor" content="#90a8b2">
+    <meta name="msapplication-TileImage" content="images/touch/icon-192x192.png">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+    <!--<![endif]--></head>
+<link rel="stylesheet" type="text/css" href="/style/icmd.css">
+<link rel="stylesheet" type="text/css" href="/style/weather.css">
+<link rel="stylesheet" type="text/css" href="/style/flight_display.css">
+
+</head>
+
+
+
+<style>
+
+    .style1 {
+        /*background: url(/images/calvin_sky.png) repeat center center fixed ;*/
+        /*-webkit-background-size: cover;*/
+        /*-moz-background-size: cover;*/
+        /*-o-background-size: cover;*/
+        background-size: 100%;
+
+
+    }
+
+    .crop {
+        width: 100%;
+        /*height: 50%;*/
+        overflow: hidden;
+        float: top;
+    }
+    .crop img {
+        width: 100%;
+        /*height: 100%;*/
+
+        /*margin: -75px 0 0 -100px;*/
+    }
+
+    body{
+        display: block;
+        /*background: url(/images/calvin_sky.png) repeat center center fixed ;*/
+        /*-webkit-background-size: cover;*/
+        /*-moz-background-size: cover;*/
+        /*-o-background-size: cover;*/
+        background-size: 100%;
+        background: none !important;
+        background-color: #457b9d !important;
+    }
+
+    #container {
+        background-color: white;
+        display: inline-block;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .pure-menu {
+        text-align: left;
+    }
+</style>
+
+<body>
+
+
+
+<!--<div style="background: rebeccapurple;opacity: 0.5; width: 100%; height: auto; position: absolute; top: 100px; left: 0px">-->
+
+<div id="layout">
+
+    <%include partials/dashboard_menu.ejs%>
+
+    <div id="main">
+        
+<button class="pure-button-primary pure-button" id="dashboard_banner" style="width: 100%; height: 50px; border-radius: 0px 0px 0px 0px; padding: 0px; margin: 0px; background-color: black">Welcome</button>
+        <div id="container">
+            
+        </div>
+    </div>
+</div>
+
+<script src="/js/icmd.js"></script>
+<script src="/js/weather.js"></script>
+<script src="/js/flight_display.js"></script>
+</body>
+</html>

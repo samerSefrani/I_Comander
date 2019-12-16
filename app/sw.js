@@ -15,36 +15,111 @@ limitations under the License.
 */
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
 
+
 if (workbox) {
-  console.log(`Yay! Workbox is loaded 🎉`);
-  workbox.precaching.precacheAndRoute([]);
+    console.log(`Yay! Workbox is loaded 🎉`);
+    workbox.precaching.precacheAndRoute([
+        'style/main.css',
+        'demo-index.html',
+        'js/idb-promised.js',
+        'js/main.js',
+        'images/**/*.*',
+        'manifest.json',
+    ]);
 
-  const showNotification = () => {
-    self.registration.showNotification('Background sync success!', {
-      body: '🎉`🎉`🎉`'
+
+    workbox.routing.registerRoute(
+        /\/api\/kier_secret$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'data-cache',
+        })
+    );
+    workbox.routing.registerRoute(
+        /\.html$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'html-cache',
+        })
+    );
+    workbox.routing.registerRoute(
+        /\.css$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'css-cache',
+        })
+    );
+    workbox.routing.registerRoute(
+        /\.js$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'js-cache',
+        })
+    );
+
+    workbox.routing.registerRoute(
+        /profile$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'page-cache',
+        })
+    );
+    workbox.routing.registerRoute(
+        /(\/$|index$)/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'page-cache',
+        })
+    );
+
+    workbox.routing.registerRoute(
+        /dashboard$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'page-cache',
+        })
+    );
+
+    workbox.routing.registerRoute(
+        /login$/,
+        new workbox.strategies.NetworkOnly({
+            cacheName: 'page-cache',
+        })
+    );
+    workbox.routing.registerRoute(
+        /add_checklist$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'page-cache',
+        })
+    );
+
+    workbox.routing.registerRoute(
+        /checklist$/,
+        new workbox.strategies.NetworkFirst({
+            cacheName: 'page-cache',
+        })
+    );
+
+
+    const showNotification = () => {
+        self.registration.showNotification('Background sync success!', {
+            body: '🎉`🎉`🎉`'
+        });
+    };
+
+    const bgSyncPlugin = new workbox.backgroundSync.Plugin(
+        'dashboardr-queue',
+        {
+            callbacks: {
+                queueDidReplay: showNotification
+                // other types of callbacks could go here
+            }
+        }
+    );
+
+    const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
+        plugins: [bgSyncPlugin],
     });
-  };
 
-  const bgSyncPlugin = new workbox.backgroundSync.Plugin(
-    'dashboardr-queue',
-    {
-      callbacks: {
-        queueDidReplay: showNotification
-        // other types of callbacks could go here
-      }
-    }
-  );
-
-  const networkWithBackgroundSync = new workbox.strategies.NetworkOnly({
-    plugins: [bgSyncPlugin],
-  });
-
-  workbox.routing.registerRoute(
-    /\/api\/add/,
-    networkWithBackgroundSync,
-    'POST'
-  );
+    workbox.routing.registerRoute(
+        /\/api\/add/,
+        networkWithBackgroundSync,
+        'POST'
+    );
 
 } else {
-  console.log(`Boo! Workbox didn't load 😬`);
+    console.log(`Boo! Workbox didn't load 😬`);
 }

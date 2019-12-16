@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="/css/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/grids-responsive-min.css">
+    <![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/style/icmd.css">
+
+<!-- var jsonRead = require(s-readJson) -->
+
+
+<title>Manage Users</title>
+
+    <script>
+
+        function getServerData(path) {
+            //  ie /api/getusers
+            return fetch(path, {method: 'GET', credentials: "same-origin"}).then(r => {
+                if (!r.ok) throw Error(r.statusText);
+                return r.json();
+            })
+        }
+
+        let userdb_p = (getServerData('/api/get_users'));
+        
+    </script>
+
+
+</head>
+
+<style>
+
+    body {
+        background: #457b9d;
+    }
+
+    .pure-g {
+        background: #A8DADC;
+        border-radius: 1em;
+        margin: 0em;
+    }
+
+    /* At the top level of your code */
+    @media screen and (min-width: 35.5em) {
+        .pure-g {
+            margin: 3em;
+        }
+    }
+
+    @media screen and (max-width: 48em) {
+        #profilepic {
+            order: -1;
+        }
+
+        #profile1 {
+            order: -2;
+        }
+    }
+
+
+</style>
+
+<body>
+
+
+<div id="layout">
+    <%include partials/dashboard_menu.ejs%>
+
+    <div id="main">
+
+        <div class="pure-g" style="padding: 2em">
+            <div class="pure-u-1 ">
+                <h1>User Management</h1>
+            </div>
+
+            <div id="list_header" class="pure-u-1 ">
+                <span style="">User List</span>
+                <button id="add_user_btn" class="pure-button-primary" data-toggle="collapse" data-target="#add_user"
+                        style="width: 50%; border-radius: 0px; border: hidden; float: right">
+                    Add User
+                </button>
+            </div>
+<div id="add_user" class="pure-u-1 collapse" style=" border-style: solid;
+        border-width: 2px;
+        border-radius: 0.5em;
+        margin: .5em;
+        /*background: #04a9f4;*/
+        background: mintcream;">
+            </div>
+            <div id="user_list" class="pure-u-1">
+                <!--Fill in div with js init user list()-->
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/icmd.js"></script>
+
+
+<style>
+    .user_item {}
+    .user_item .pure-g{
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 0.5em;
+        margin: .5em;
+        /*background: #04a9f4;*/
+        background: mintcream;
+        /*transition: height 1s ease-in-out;*/
+    }
+
+    .user_image {
+        width: 3em;
+        height: 3em;
+        border-radius: 0.5em;
+        padding: 3px;
+    }
+
+    .user_item button {
+        border: none;
+        float: right;
+        /*padding: 0.5em;*/
+        background: #457b9d;
+        height: 2em;
+        margin: 0.5em;
+    }
+
+</style>
+
+<script>
+    async function deleteSubmit( id) {
+        // console.log(e);
+        // e.preventDefault();
+        // console.log(e.target);
+        // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        console.log('delete: '+ id);
+        // let data = new FormData(;
+        // data.set('did', did);
+
+
+        // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        const response = await fetch("/api/delete_user", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: id}),
+
+            credentials: "same-origin"
+        });
+
+        r = await response.json();
+        // console.log(r);
+        // let users = r;
+
+        var element = document.getElementById(`user_item_${id}`);
+        element.parentNode.removeChild(element);
+
+        console.log("Successfully deleted user")
+
+
+    }
+
+    async function editSubmit(e) {
+        e.preventDefault();
+        // console.log(e.target);
+        // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        let data = new FormData(e.target)
+        // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        const response = await fetch("/api/edit_user", {method: "POST", body: data, credentials: "same-origin"})
+        r = await response.json();
+        // console.log(r);
+        let users = r;
+        let d = r.updated_user
+
+        document.getElementById(`e_username${d.id}`).innerHTML = `Username: ${d.username}`
+        /*document.getElementById(`e_password${d.id}`).innerHTML = `Password: ${d.password}`*/
+        document.getElementById(`e_displayName${d.id}`).innerHTML = `DisplayName: ${d.displayName}`
+        document.getElementById(`e_email${d.id}`).innerHTML = `email: ${d.email}`
+        document.getElementById(`e_role${d.id}`).innerHTML = `role: ${d.role}`
+
+        console.log("Successfully edited user")
+        // console.log(response);
+
+    }
+
+    async function addSubmit(e) {
+        e.preventDefault();
+        let dl = document.getElementById('user_list');
+
+        console.log(e.target);
+
+         // let data = new FormData(e.target)
+        const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        const response = await fetch("/api/edit_user", {method: "POST", body: params, credentials: "same-origin"})
+        // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        //
+        // // const params = new URLSearchParams([...new FormData(e.target).entries()]);
+        // const response = await fetch("/api/edit_user", {method: "POST", body: params, credentials: "same-origin"})
+        r = await response.json();
+        let users = r;
+        let d = r.updated_user
+
+        let item = gen_user_item(d);
+        dl.appendChild(item);
+
+        console.log("Successfully added user")
+
+    }
+    // data-toggle="modal" data-target="#deleteModal${d.did}"
+    function gen_delete_confirm(d) {
+        return `
+            <div class="modal fade" id="deleteModal${d.id}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel${d.id}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel${d.id}">Are you sure you with to delete user: ${d.username}?\n This can't be undone!</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteSubmit(${d.id})">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+    }
+
+    function gen_user_form(u) {
+        if(u == null) {
+            u = {
+                id:-1,
+                username:'',
+                displayName:'',
+                password:'',
+                email:''
+            }
+        }
+    //TODO MAKE USERES ROLE SELECTED
+        return `<form id='edit_form_${u.id}' class="pure-form pure-form-aligned" enctype='multipart/form-data'
+                      action="#" style="height: 100%; background: mintcream">
+                    <input hidden name='id' type="number" value='${u.id}'>
+                    <fieldset>
+
+                        <div class="pure-control-group">
+                            <label for="username">User Name</label>
+                            <input name="username" type="text" placeholder="Username"
+                                   value="${u.username}">
+                        </div>
+
+                        <div class="pure-control-group">
+                            <label for="displayName">Display Name</label>
+                            <input name="displayName" type="text" placeholder="displayName"
+                                   value="${u.displayName}">
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="password">Password</label>
+                            <input name="password" type="password" placeholder="password"
+                                   value="${u.password}">
+                        </div>
+
+                         <div class="pure-control-group">
+                            <label for="role">Role</label>
+
+                            <select name='role' id="role" >
+                                <option value="guest">Guest</option>
+                                <option value="user">User</option>
+                                <option value="tech">Technican</option>
+                                <option value="admin">Admin</option>
+                                <option value="superadmin">Super Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="pure-control-group">
+                            <label for="email">Email Address:</label>
+                            <input name="email" type="text" placeholder="email"
+                                   value="${u.email}">
+                        </div>
+
+                        <div class="pure-controls">
+                            <button type="submit" class="pure-button pure-button-primary" style="float: left">Submit
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>`
+    }
+
+
+/*                        <div class="pure-u-1 pure-u-sm-3-4 pure-u-md-3-8" id="e_password${d.id}" style="">
+                            ${d.password}
+                        </div>
+*/
+
+
+    function gen_user_item(u) {
+
+        let item = document.createElement('div')
+        item.classList.add('user_item')
+        item.classList.add('pure-u-1')
+
+        item.id = `user_item_${u.id}`;
+
+
+        let _form = gen_user_form(u);
+        // data-toggle="modal" data-target="#deleteModal${d.id}"
+        item.innerHTML = `
+
+                <div  id="e_info${u.id}" class="pure-g">
+
+                        <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-8" id="e_username${u.id}" style="">
+                            ${u.username}
+                        </div>
+                        
+
+                        <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-4" id="e_displayname${u.id}">
+                            Display Name: ${u.displayName}
+                        </div>
+                        <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-8" id="e_role${u.id}">
+                            Role: ${u.role}
+                        </div>
+                        <div class="pure-u-1 pure-u-sm-3-4 pure-u-md-1-4" id="e_email${u.id}">
+                            Email: ${u.email}
+                        </div>
+
+                    <div class="pure-u-1 pure-u-md-1-4" id="e_btns${u.id}" style="float: right;">
+                         <button class="pure-button-primary" style="background: mintcream; color: #99121d" data-toggle="modal" data-target="#deleteModal${u.id}" >X</button>
+
+                         
+
+                    </div>
+
+                    <div id="edit_drone_${u.id}" class="pure-u-1 collapse" style="border-width: 2px 0 0 0; border-style: solid">
+                    ${_form}
+                </div>
+
+                </div>
+
+                ${gen_delete_confirm(u)}
+                `
+
+        console.log(u)
+        return item;
+
+    }
+
+/*<button class="pure-button-primary" data-toggle="collapse" data-target="#edit_user_${d.id}">Edit</button>*/
+
+    async function init_user_list() {
+        dl = document.getElementById('user_list');
+        // todo: properly make this async
+
+        let responses = []
+        responses.push(userdb_p);
+        /*responses.push(Ulistdb_p);*/
+        // console.log(responses)
+        Promise.all(responses).then(value => {
+
+            console.log(value)
+            users = value[0];
+            /*listdb = value[1];*/
+
+            /*Ulist_options = ``;
+            Ulistdb.lists.forEach(l => {
+                list_options += `<option value='${l.lid}'>${l.label}</option>`;
+            })*/
+
+            let adddiv = document.getElementById('add_user');
+            adddiv.innerHTML = gen_user_form(null)
+            document.getElementById(`edit_form_-1`).onsubmit = addSubmit
+            // console.log(userdb);
+            users.users.forEach((u) => {
+                let item = gen_user_item(u);
+                dl.appendChild(item);
+                document.getElementById(`edit_form_${u.id}`).onsubmit = editSubmit
+
+            });
+
+        });
+    }
+
+    let users = {};
+    init_user_list();
+
+</script>
+
+
+</html>

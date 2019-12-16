@@ -1,0 +1,624 @@
+{
+  "next_lid": 43,
+  "lists": [
+    {
+      "lid": 22,
+      "label": "uselessChecklist",
+      "items": [
+        {
+          "type": "Input",
+          "label": "enter ur name user!",
+          "action": "LockOut",
+          "trigger": "angry",
+          "alert": "danger",
+          "ticket": {
+            "title": "asdczxc asd",
+            "body": "asdczxc asd"
+          }
+        },
+        {
+          "type": "CheckBox",
+          "label": "human?",
+          "action": "None"
+        },
+        {
+          "type": "DropDown",
+          "label": "drink",
+          "options": [
+            "cofee,beer,water"
+          ],
+          "action": "ticket",
+          "trigger": [
+            "Black",
+            "Blue"
+          ],
+          "ticket": {
+            "title": "Bad Fav Color",
+            "body": "We all know green is the best color time to change some minds"
+          }
+        }
+      ]
+    },
+    {
+      "lid": 38,
+      "label": "cas",
+      "items": [
+        {
+          "type": "DropDown",
+          "label": "asd",
+          "options": [
+            ""
+          ],
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "lid": 39,
+      "label": "as,djhaskjd",
+      "items": [
+        {
+          "type": "CheckBox",
+          "label": "asjd",
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "lid": 40,
+      "label": "test",
+      "items": [
+        {
+          "type": "CheckBox",
+          "label": "asd",
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "lid": 41,
+      "label": "asdzxcz",
+      "items": [
+        {
+          "type": "DropDown",
+          "label": "asd",
+          "options": [
+            ""
+          ],
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "lid": 42,
+      "label": "new new",
+      "items": [
+        {
+          "type": "dropdown",
+          "label": "asdzc",
+          "options": [
+            "zxcz"
+          ],
+          "action": "LockOut",
+          "trigger": "asd",
+          "alert": "asd",
+          "ticket": {
+            "title": "",
+            "body": ""
+          }
+        },
+        {
+          "type": "Input",
+          "label": "zxczdadad",
+          "action": "ticket",
+          "trigger": "zczds",
+          "ticket": {
+            "title": "asdzc",
+            "body": "asdzc"
+          }
+        },
+        {},
+        {},
+        {
+          "type": "Input",
+          "label": "aszcc",
+          "action": "ticket",
+          "trigger": "",
+          "ticket": {
+            "title": "",
+            "body": ""
+          }
+        }
+      ]
+    },
+    {
+      "lid": 43,
+      "label": "haha",
+      "items": [
+        {
+          "type": "sublist",
+          "sid": "9"
+        },
+        {
+          "type": "dropdown",
+          "label": "asasd",
+          "options": [
+            "aasdcasc"
+          ],
+          "action": "LockOut",
+          "trigger": "asc",
+          "alert": "asc",
+          "ticket": {
+            "title": "asc",
+            "body": "asc"
+          }
+        },
+        {
+          "type": "CheckBox",
+          "label": "ac",
+          "action": "ticket",
+          "trigger": "asd",
+          "ticket": {
+            "title": "asd",
+            "body": "asd"
+          }
+        }
+      ]
+    }
+  ],
+  "next_sid": 17,
+  "sublists": [
+    {
+      "sid": 9,
+      "label": "Required Documentation - Universal",
+      "items": [
+        {
+          "type": "checkbox",
+          "label": "Landowner/Flight Area Permission Forms On-Hand",
+          "action": "none"
+        },
+        {
+          "type": "checkbox",
+          "label": "Is Oven Off",
+          "action": "ticket",
+          "trigger": false,
+          "ticket": {
+            "title": "turn off oven",
+            "body": "all ovens must be off"
+          }
+        },
+        {
+          "type": "checkbox",
+          "label": "is Cat Loved",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Not Loving Cat will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "all cats must be loved"
+          }
+        },
+        {
+          "type": "input",
+          "label": "Enter Your Licence Number",
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 0,
+      "label": "Required Documentation-Universal",
+      "items": [
+        {
+          "label": "Apple",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Apple not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Apple need check"
+          }
+        },
+        {
+          "label": "Pilot License On-Hand",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Pilot License On-Hand will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Pilot License On-Hand"
+          }
+        },
+        {
+          "label": "Drone Registraton Certifcate On-Hand - FAA / TC",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Drone Registraton Certifcate On-Hand - FAA / TC not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Drone Registraton Certifcate On-Hand - FAA / TC need check"
+          }
+        },
+        {
+          "label": "Insurance On-Hand",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Insurance On-Hand not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Insurance On-Hand need check"
+          }
+        },
+        {
+          "label": "FLHA and Tailgate Completed",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "FLHA and Tailgate Completed not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "FLHA and Tailgate Completed need check"
+          }
+        },
+        {
+          "label": "GPS Coordinates (Lat/Long) Visible for Reference",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "GPS Coordinates (Lat/Long) Visible for Reference not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "GPS Coordinates (Lat/Long) Visible for Reference need check"
+          }
+        },
+        {
+          "label": "Emergency Services Contact Information Visible",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Emergency Services Contact Information Visible not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Emergency Services Contact Information Visible need check"
+          }
+        },
+        {
+          "label": "Air Traffic Control and Aerodrome Contact Information Visible",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Air Traffic Control and Aerodrome Contact Information Visible not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Air Traffic Control and Aerodrome Contact Information Visible need check"
+          }
+        }
+      ]
+    },
+    {
+      "sid": 1,
+      "label": "In-field and pre-flight checklist-INS 01",
+      "items": [
+        {
+          "label": "Date",
+          "type": "textbox",
+          "action": "none"
+        },
+        {
+          "label": "Pilot in Command",
+          "type": "dropdown",
+          "options": [
+            "david",
+            "joker"
+          ],
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 2,
+      "label": "Physical Eniveronment-Mission Area",
+      "items": [
+        {
+          "label": "Weather Check",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Weather not Check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Weather need Check"
+          }
+        },
+        {
+          "label": "Place Safety Cones Around Area",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Place Safety Cones Around Area not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Place Safety Cones Around Area need check"
+          }
+        },
+        {
+          "label": "Operation Signage Appropriately Placed",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Operation Signage Appropriately Placed not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Operation Signage Appropriately Placed need check"
+          }
+        },
+        {
+          "label": "Safe Landing Area Established",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Safe Landing Area Established not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Safe Landing Area Established need check"
+          }
+        },
+        {
+          "label": "Clear Landing Area",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Clear Landing Area not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Clear Landing Area need check"
+          }
+        },
+        {
+          "label": "Area Clear of Non-Participants",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Area Clear of Non-Participants not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Area Clear of Non-Participants need check"
+          }
+        },
+        {
+          "label": "Fire Extinguisher On-Hand",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Fire Extinguisher On-Hand not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Fire Extinguisher On-Hand need check"
+          }
+        },
+        {
+          "label": "Wind and Temperature Within Operating Specs",
+          "type": "checkbox",
+          "action": "LOCKOUT",
+          "trigger": false,
+          "alert": "Wind and Temperature Within Operating Specs not check will lock this drone out of service",
+          "ticket": {
+            "title": "Teack USer to love cat",
+            "body": "Wind and Temperature Within Operating Specs need check"
+          }
+        }
+      ]
+    },
+    {
+      "sid": 3,
+      "label": "Software/Firmware",
+      "items": [
+        {
+          "label": "Latest Version Firmware",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Latest Version Ground Control Software",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Latest Version Sensor Firmware",
+          "type": "checkbox",
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 4,
+      "label": "Flight planning",
+      "items": [
+        {
+          "label": "Mission Uploaded to UAV",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Safe \"Home\" and/or \"Start\" Location Established",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Correct Flight Elevation Programmed",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Furthers Waypoints are Within Telemetry Range",
+          "type": ""
+        }
+      ]
+    },
+    {
+      "sid": 5,
+      "label": "Communication",
+      "items": [
+        {
+          "label": "iCom Radio On",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Verbal Flight Description and Pattern Discussed",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Furthest Distance of UAV from \"Home\" is Verbalized",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Verbal Clarification of Flyaway Procedure",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Platform Identifier",
+          "type": "checkbox",
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 6,
+      "label": "Battery",
+      "items": [
+        {
+          "label": "Platform Battery Charged to 90% - Checked with Remote",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Remote Control Battery Charged",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Tablet / Computer Ground Station Charged",
+          "type": "checkbox",
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 7,
+      "label": "Platform Checks",
+      "items": [
+        {
+          "label": "No Loose Cables or Wiring",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Legs / Arms Locked and Secured",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Leg / Arm Locking Mechanism in Condition",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Propellers in Condition",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Body Free of Cracks and Dents",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Screws / Nuts / Bolts in Place and Tight",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Battery Connectors and Cables Secure",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Gimbal and Payload Assembly Secure",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Camera Responsive to Commands",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Compass Calibration if 10km From Last Flight or 30 Days)",
+          "type": "checkbox",
+          "action": "none"
+        },
+        {
+          "label": "Optical Flow Sensor(s) Clear of Obstruction Debris",
+          "type": "checkbox",
+          "action": "none"
+        }
+      ]
+    },
+    {
+      "sid": 13,
+      "label": "useless sublist",
+      "items": [
+        {
+          "type": "CheckBox",
+          "label": "useless",
+          "action": "LockOut",
+          "trigger": "no trigger",
+          "alert": "no alert",
+          "ticket": {
+            "title": "no",
+            "body": "no"
+          }
+        },
+        {
+          "type": "Input",
+          "label": "useless 2",
+          "action": "None"
+        },
+        {
+          "type": "Input",
+          "label": "useless 2",
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "sid": 14,
+      "label": "test",
+      "items": [
+        {
+          "type": "CheckBox",
+          "label": "asdasd",
+          "action": "None"
+        }
+      ]
+    },
+    {
+      "sid": 16,
+      "label": "My Sublist",
+      "items": [
+        {
+          "type": "Sublist",
+          "sid": "0"
+        }
+      ]
+    }
+  ]
+}
